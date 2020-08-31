@@ -36,11 +36,12 @@ def show_results(correct_digits_and_position, correct_digits_only):
     print('Number of correct digits not in correct place: ' + str(correct_digits_only))
 
 
-def u_in():
-    try:
-        return input("Input 4 digit code: ")
-    except:
-        EOFError
+def get_input():
+    answer = input("Input 4 digit code: ")
+    while len(answer) != 4 or answer.isdigit() == False or '0' in answer or '9' in answer:
+        print("Please enter exactly 4 digits.")
+        answer = input("Input 4 digit code: ")
+    return answer
 
 # was : def take_turn(code, answer):
 def take_turn(code):
@@ -52,12 +53,9 @@ def take_turn(code):
 
     #global correct_digits_and_position
     #global correct_digits_only
-    answer = input("Input 4 digit code: ")
+    answer = get_input()    
 
-    while len(answer) != 4 or answer.isdigit() == False or '0' in answer or '9' in answer:
-        print("Please enter exactly 4 digits.")
-        #u_in()
-        answer = input("Input 4 digit code: ")
+
 
     correct_digits_and_position = 0
     correct_digits_only = 0
@@ -83,8 +81,6 @@ def show_code(code):
 def check_correctness(turns, correct_digits_and_position):
     """Checks correctness of answer and show output to user"""
 
-    #global correct
-    #correct = False
 
     if correct_digits_and_position == 4:
         #correct = True
